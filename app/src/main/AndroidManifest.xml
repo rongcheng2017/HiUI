@@ -11,9 +11,11 @@
         android:theme="@style/Theme.Hiui">
         <activity
             android:name=".tab.HiTabBottomDemoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tab.HiTabTopDemoActivity"
             android:exported="true"
-            android:label="@string/app_name"
-           >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
