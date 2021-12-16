@@ -17,7 +17,7 @@ class HiRefreshLayoutDemoActivity : AppCompatActivity() {
         refreshLayout.setRefreshOverView(overView)
         refreshLayout.setRefreshListener(object : IHiRefresh.HiRefreshListener {
             override fun onRefresh() {
-                Handler().postDelayed({ refreshLayout.refreshFinished() }, 1000)
+//                Handler().postDelayed({ refreshLayout.refreshFinished() }, 1000)
             }
 
             override fun enableRefresh(): Boolean {

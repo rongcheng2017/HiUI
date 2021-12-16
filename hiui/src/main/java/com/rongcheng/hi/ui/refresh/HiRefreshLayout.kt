@@ -49,8 +49,9 @@ class HiRefreshLayout @JvmOverloads constructor(
                 return false
             }
             mHiOverView?.apply {
-                //没有刷新或者没有达到刷新的距离，且头部已经划出或者下拉
-                if ((mState != HiOverView.HiRefreshState.STATE_REFRESH || head.bottom <= this.mPullRefreshHeight) && (head.bottom > 0 || distanceY <= 0)) {
+                //没有刷新或者没有达到刷新的距离，且头部已经划出或者下拉  head.bottom < this.mPullRefreshHeight 不能包含=
+                if ((mState != HiOverView.HiRefreshState.STATE_REFRESH || head.bottom < this.mPullRefreshHeight)
+                    && (head.bottom > 0 || distanceY <= 0)) {
                     //还在滑动中
                     return if (mState != HiOverView.HiRefreshState.STATE_OVER_RELEASE) {
                         //根据阻尼计算速度
@@ -132,16 +133,15 @@ class HiRefreshLayout @JvmOverloads constructor(
         } else if (childTop <= mHiOverView!!.mPullRefreshHeight) {
             //还没超出设定的刷新距离
             if (mHiOverView!!.state != HiOverView.HiRefreshState.STATE_VISIBLE && nonAuto) {
-                //头部开始显示
+                //头部开始显示  下拉-->头部全部显示 的过程
                 mHiOverView?.onVisible()
                 mHiOverView?.state = HiOverView.HiRefreshState.STATE_VISIBLE
                 mState = HiOverView.HiRefreshState.STATE_VISIBLE
             }
             head?.offsetTopAndBottom(offsetY)
             child?.offsetTopAndBottom(offsetY)
-            if (
-                childTop == mHiOverView!!.mPullRefreshHeight && mState == HiOverView.HiRefreshState.STATE_OVER_RELEASE
-            ) {
+            /**触发刷新*/
+            if (childTop == mHiOverView!!.mPullRefreshHeight && mState == HiOverView.HiRefreshState.STATE_OVER_RELEASE) {
                 refresh()
             }
         } else {
@@ -154,7 +154,6 @@ class HiRefreshLayout @JvmOverloads constructor(
             child?.offsetTopAndBottom(offsetY)
         }
         mHiOverView?.onScroll(head?.bottom ?: 0, mHiOverView!!.mPullRefreshHeight)
-
         return true
     }
 
@@ -238,8 +237,9 @@ class HiRefreshLayout @JvmOverloads constructor(
     }
 
     private fun recover(dis: Int) {
+        // dis > mHiOverView!!.mPullRefreshHeight  必须是 >  而不是>=
         if (mHiRefreshListener != null && mHiOverView != null && dis > mHiOverView!!.mPullRefreshHeight) {
-            //滚动到指定位置
+            //滚动到指定位置 (在设置了刷新监听的情况下，需用开发者判断刷新是否结束，所以此处需要在固定位置显示刷新视图。不能让Overview直接消失 )
             mAutoScroller.recover(dis - mHiOverView!!.mPullRefreshHeight)
             mState = HiOverView.HiRefreshState.STATE_OVER_RELEASE
         } else mAutoScroller.recover(dis)
@@ -248,8 +248,7 @@ class HiRefreshLayout @JvmOverloads constructor(
     inner class AutoScroller(val view: View) : Runnable {
         private val mScroller: Scroller = Scroller(view.context, LinearInterpolator())
         private var mLastY = 0
-        var mIsFinished: Boolean = true
-            private set
+        private var mIsFinished: Boolean = true
 
         override fun run() {
             if (mScroller.computeScrollOffset()) {//还未完成滚动
@@ -272,6 +271,5 @@ class HiRefreshLayout @JvmOverloads constructor(
             mScroller.startScroll(0, 0, 0, dis, 300)
             view.post(this)
         }
-
     }
 }

@@ -21,7 +21,6 @@ abstract class HiOverView @JvmOverloads constructor(
         /**Header展示的状态*/
         STATE_VISIBLE,
 
-
         /**正在刷新*/
         STATE_REFRESH,
 
