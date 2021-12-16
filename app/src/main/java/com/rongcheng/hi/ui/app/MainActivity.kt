@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import com.rongcheng.hi.ui.app.databinding.ActivityMainBinding
+import com.rongcheng.hi.ui.app.refresh.HiRefreshLayoutDemoActivity
 import com.rongcheng.hi.ui.app.tab.HiTabBottomDemoActivity
 import com.rongcheng.hi.ui.app.tab.HiTabTopDemoActivity
 import com.rongcheng.hi.ui.tab.bottom.HiTabBottom
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 )
             )
             binding.tabTopLayout -> startActivity(Intent(this, HiTabTopDemoActivity::class.java))
+            binding.refresh -> startActivity(Intent(this, HiRefreshLayoutDemoActivity::class.java))
         }
     }
 }

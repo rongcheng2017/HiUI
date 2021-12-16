@@ -22,6 +22,6 @@ interface IHiRefresh {
 
     interface HiRefreshListener {
         fun onRefresh()
-        fun enableRefresh()
+        fun enableRefresh():Boolean
     }
 }

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hiui">
         <activity
+            android:name=".refresh.HiRefreshLayoutDemoActivity"
+            android:exported="false" />
+        <activity
             android:name=".tab.HiTabBottomDemoActivity"
             android:exported="false" />
         <activity
