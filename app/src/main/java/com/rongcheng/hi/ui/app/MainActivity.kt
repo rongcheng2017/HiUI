@@ -12,6 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import com.rongcheng.hi.ui.app.banner.HiBannerDemoActivity
 import com.rongcheng.hi.ui.app.databinding.ActivityMainBinding
 import com.rongcheng.hi.ui.app.refresh.HiRefreshLayoutDemoActivity
 import com.rongcheng.hi.ui.app.tab.HiTabBottomDemoActivity
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.refresh.setOnClickListener(this)
         binding.tabBottomLayout.setOnClickListener(this)
         binding.tabTopLayout.setOnClickListener(this)
+        binding.banner.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -42,6 +44,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             )
             binding.tabTopLayout -> startActivity(Intent(this, HiTabTopDemoActivity::class.java))
             binding.refresh -> startActivity(Intent(this, HiRefreshLayoutDemoActivity::class.java))
+            binding.banner -> startActivity(Intent(this, HiBannerDemoActivity::class.java))
         }
     }
 }
