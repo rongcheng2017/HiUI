@@ -65,6 +65,10 @@ class HiBannerDelegate(private val mContext: Context, private val mBanner: HiBan
         if (mHiViewPager != null && duration > 0) mHiViewPager?.setScrollDuration(duration)
     }
 
+    override fun setIndicator(hiIndicator: HiIndicator<*>) {
+        this.mHiIndicator = hiIndicator
+    }
+
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
         if (mOnPageChangeListener != null && mAdapter != null && mAdapter!!.getBannerRealCount() != 0) {
             mOnPageChangeListener?.onPageScrolled(

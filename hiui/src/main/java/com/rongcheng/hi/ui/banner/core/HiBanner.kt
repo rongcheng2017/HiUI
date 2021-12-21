@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.viewpager.widget.ViewPager
 import com.rongcheng.hi.ui.R
+import com.rongcheng.hi.ui.banner.indicator.HiIndicator
 
 class HiBanner @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -61,5 +62,9 @@ class HiBanner @JvmOverloads constructor(
 
     override fun setScrollDuration(duration: Int) {
         delegate?.setScrollDuration(duration)
+    }
+
+    override fun setIndicator(hiIndicator: HiIndicator<*>) {
+        delegate?.setIndicator(hiIndicator)
     }
 }

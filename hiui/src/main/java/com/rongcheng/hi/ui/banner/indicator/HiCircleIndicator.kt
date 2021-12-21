@@ -16,6 +16,7 @@ class HiCircleIndicator @JvmOverloads constructor(
 ) : FrameLayout(context, attrs), HiIndicator<FrameLayout> {
     private val vwc = ViewGroup.LayoutParams.WRAP_CONTENT
 
+
     @DrawableRes
     private var mPointNormal = R.drawable.shape_point_normal
 

@@ -8,6 +8,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Switch
 import android.widget.TextView
+import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.rongcheng.hi.ui.app.R
 import com.rongcheng.hi.ui.banner.core.HiBanner
@@ -33,6 +34,8 @@ class HiBannerDemoActivity : AppCompatActivity() {
     private var autoPlay: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val viewPager=ViewPager(this)
+        viewPager.adapter
         setContentView(R.layout.activity_hi_banner_demo)
         initView(HiCircleIndicator(this), false)
         findViewById<Switch>(R.id.auto_play).setOnCheckedChangeListener { _, isChecked ->

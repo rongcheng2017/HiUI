@@ -2,22 +2,13 @@ package com.rongcheng.hi.ui.app
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
-import com.rongcheng.hi.ui.app.banner.HiBannerDemoActivity
+import com.rongcheng.hi.ui.app.banner.frc.FBannerDemoActivity
 import com.rongcheng.hi.ui.app.databinding.ActivityMainBinding
 import com.rongcheng.hi.ui.app.refresh.HiRefreshLayoutDemoActivity
 import com.rongcheng.hi.ui.app.tab.HiTabBottomDemoActivity
 import com.rongcheng.hi.ui.app.tab.HiTabTopDemoActivity
-import com.rongcheng.hi.ui.tab.bottom.HiTabBottom
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -44,7 +35,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             )
             binding.tabTopLayout -> startActivity(Intent(this, HiTabTopDemoActivity::class.java))
             binding.refresh -> startActivity(Intent(this, HiRefreshLayoutDemoActivity::class.java))
-            binding.banner -> startActivity(Intent(this, HiBannerDemoActivity::class.java))
+            binding.banner -> startActivity(Intent(this, FBannerDemoActivity::class.java))
         }
     }
 }
