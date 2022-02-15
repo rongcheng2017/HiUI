@@ -2,6 +2,7 @@ package com.rongcheng.hi.ui.app
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import com.rongcheng.hi.ui.app.banner.frc.FBannerDemoActivity
@@ -23,6 +24,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.tabBottomLayout.setOnClickListener(this)
         binding.tabTopLayout.setOnClickListener(this)
         binding.banner.setOnClickListener(this)
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        binding.banner.post {
+            Log.e("onResume", "w: " + binding.banner.width)
+        }
+        binding.banner.viewTreeObserver.addOnGlobalLayoutListener {
+            binding.banner.viewTreeObserver.removeOnGlobalLayoutListener { this }
+            Log.e("viewTreeObserver", "w: " + binding.banner.width)
+        }
+
     }
 
     override fun onClick(v: View?) {
